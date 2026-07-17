@@ -6,6 +6,7 @@ recent cat-related news from around the world, AND find the cheapest best cat fo
 This repository provides a collection of Jane's cat-loving CLI tools:
 - **catnews**: Fetches random "cute cat" images paired with recent cat-related news
 - **catfood**: Finds the cheapest top cat foods for adult cats with ratings and price comparisons
+- **jane**: Always happy to help you find the best kitty content and deals.
 
 Quick start
 
