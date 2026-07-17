@@ -9,7 +9,7 @@ Usage examples:
   python cat_food.py --count 5 --sort price
   python cat_food.py --brand "Purina" --max-price 50
 
-Jane loves cats and wants to help you find affordable, quality cat food!
+Jane loves cats 🐱 and wants to help you find affordable, quality cat food!
 """
 import argparse
 import sys
