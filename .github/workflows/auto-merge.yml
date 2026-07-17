@@ -1,4 +1,4 @@
-name: Auto-merge PR from mdwaqasskhan
+name: Auto-merge PR from WaqassKhn
 
 on:
   pull_request:
@@ -9,34 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'WaqassKhn'
     permissions:
-      pull-requests: write
       contents: write
+      pull-requests: write
 
     steps:
-      - name: Check PR author
-        id: check_author
-        run: |
-          if [ "${{ github.event.pull_request.user.login }}" == "WaqassKhn" ]; then
-            echo "author_matches=true" >> $GITHUB_OUTPUT
-          else
-            echo "author_matches=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Approve PR
-        if: steps.check_author.outputs.author_matches == 'true'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.pulls.createReview({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-              event: 'APPROVE'
-            });
-
-      - name: Enable auto-merge
-        if: steps.check_author.outputs.author_matches == 'true'
+      - name: Enable auto-merge for WaqassKhn PR
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -48,6 +25,5 @@ jobs:
               merge_method: 'squash'
             });
 
-      - name: PR auto-merge enabled
-        if: steps.check_author.outputs.author_matches == 'true'
-        run: echo "PR from WaqassKhn will be auto-merged."
+      - name: Log auto-merge enabled
+        run: echo "✅ PR #${{ github.event.pull_request.number }} from WaqassKhn auto-merge enabled (squash method)"
