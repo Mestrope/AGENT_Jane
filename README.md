@@ -1,13 +1,11 @@
-Cat News — Cute Cat Images + Recent Cat News (CLI)
+Cat News & Cat Food Finder — Jane's Collection
 
-Meet Jane — the cat-loving agent. She loves cats and curates random cute cat images
-paired with recent cat-related news from around the world. Use the "catnews" CLI to
-ask Jane for a cute cat picture, a cat news update, or both.
+Meet Jane — the cat-loving agent. She loves cats and helps you discover random cute cat images,
+recent cat-related news from around the world, AND find the cheapest best cat food for your adult feline.
 
-This repository provides a small command-line tool named "catnews" that:
-- Fetches random "cute cat" images from Wikimedia Commons (no API key required)
-- Fetches recent cat-related news from Google News RSS
-- Pairs one news item with each picture and prints the results
+This repository provides a collection of Jane's cat-loving CLI tools:
+- **catnews**: Fetches random "cute cat" images paired with recent cat-related news
+- **catfood**: Finds the cheapest top cat foods for adult cats with ratings and price comparisons
 
 Quick start
 
@@ -21,57 +19,104 @@ Quick start
 
    pip install -r requirements.txt
 
-4. Run the CLI
+4. Run Jane's tools
 
+   **catnews** (images + news):
    - Using Python directly:
        python cat_news.py both --count 4 --since-hours 48 --download-dir images
        python cat_news.py cute --count 3 --download-dir images
        python cat_news.py news --since-hours 24
-
+   
    - On Windows you can use the included launcher (from the repo root):
        .\catnews.bat cute --count 3
 
-Usage overview
+   **catfood** (find affordable cat food):
+   - Using Python directly:
+       python cat_food.py
+       python cat_food.py --count 5 --brand "Purina"
+       python cat_food.py --max-price 20 --min-rating 4.0
+   
+   - On Windows:
+       .\catfood.bat
+       .\catfood.bat --count 5 --brand "Royal Canin"
+
+Tools overview
+
+**catnews** — Cute cat images + recent news
+
 - Actions (subcommands):
   - cute   : Fetch and show random cute cat images (optionally download)
   - news   : Show recent cat-related news
   - both   : Fetch images and pair each with a recent news item (default)
 
-Common flags
-- --count N        Number of images to fetch (default: 3 for cute/both)
-- --download-dir D Directory to download images into (optional)
-- --no-download    Do not download images; only print URLs and news
-- --since-hours H  How recent the news should be in hours (default: 48)
+- Common flags:
+  - --count N        Number of images to fetch (default: 3 for cute/both)
+  - --download-dir D Directory to download images into (optional)
+  - --no-download    Do not download images; only print URLs and news
+  - --since-hours H  How recent the news should be in hours (default: 48)
+
+**catfood** — Find affordable cat food
+
+- Shows the cheapest top 3 adult cat foods available online (from popular retailers like Amazon, Chewy, Walmart, Petco)
+- Displays prices, ratings, weight, and price per ounce for easy comparison
+- Filters available for brand, max price, and minimum rating
+
+- Common flags:
+  - --count N         Number of cheapest foods to show (default: 3)
+  - --brand BRAND     Filter by brand (e.g., 'Purina', 'Royal Canin')
+  - --max-price PRICE Filter by maximum price (e.g., 25.00)
+  - --min-rating RATE Filter by minimum rating (0-5, default: 0)
+  - --sort FIELD      Sort by 'price', 'rating', or 'name' (default: price)
+  - --json            Output results as JSON
 
 Examples
+
+**catnews examples:**
 - Show 5 cute cat images and download them into an images folder:
     python cat_news.py cute --count 5 --download-dir images
 
 - Show recent cat news from the last 24 hours:
     python cat_news.py news --since-hours 24
 
-- Default (both): 3 random cute cat images paired with recent news (48 hours):
-    python cat_news.py
-    python cat_news.py both
+**catfood examples:**
+- Show the top 3 cheapest cat foods (default):
+    python cat_food.py
+
+- Find the cheapest Purina cat foods:
+    python cat_food.py --brand "Purina"
+
+- Show cat foods under $20 with at least 4.0 rating:
+    python cat_food.py --max-price 20 --min-rating 4.0
+
+- Get 5 cheapest options as JSON:
+    python cat_food.py --count 5 --json
 
 Project components (what's included)
-- cat_news.py       — Primary CLI agent (recommended). Implements subcommands: cute, news, both.
-- catnews.bat       — Windows launcher that forwards arguments to cat_news.py (run from repo root).
-- cat_agent.py      — Earlier/simpler CLI script (kept for reference).
+- cat_news.py       — Primary catnews CLI agent. Implements subcommands: cute, news, both.
+- cat_food.py       — catfood CLI agent. Finds and compares cat food prices.
+- catnews.bat       — Windows launcher for catnews (run from repo root).
+- catfood.bat       — Windows launcher for catfood (run from repo root).
+- cat_agent.py      — Earlier/simpler catnews script (kept for reference).
 - requirements.txt  — Python dependencies (requests, feedparser).
 - README.md         — This file with usage and details.
 
-Key functions inside cat_news.py
-- fetch_wikimedia_images(query_terms, count, fetch_limit)
-  - Searches Wikimedia Commons (primary search restricts to File namespace) and returns image title + URL pairs. Has a fallback search when no results are found.
-- fetch_news_entries(query, max_items)
-  - Fetches Google News RSS for the specified query and returns parsed entries (title, link, published timestamp).
-- filter_recent_entries(entries, since_hours)
-  - Filters news entries to those within the specified recent time window (in hours).
-- download_image(url, out_path)
-  - Downloads image bytes to disk.
-- print_pairings(images, news_entries, download_dir, no_download)
-  - Pairs images with news entries and prints info; downloads files when requested.
+Key functions and data sources
+
+**catnews (cat_news.py):**
+- fetch_wikimedia_images()  — Searches Wikimedia Commons for cat images
+- fetch_news_entries()      — Fetches Google News RSS for cat-related news
+- filter_recent_entries()   — Filters news by time window
+- print_pairings()          — Pairs images with news and prints results
+
+**catfood (cat_food.py):**
+- get_cat_foods()           — Filters cat food list by brand, price, rating
+- calculate_price_per_oz()  — Calculates cost efficiency
+- print_results()           — Displays cat food options in formatted table
+
+Data sources used:
+- catnews images: Wikimedia Commons via MediaWiki API (public/freely-licensed)
+- catnews news: Google News RSS search for "cats" and "kittens"
+- catfood: Curated database of popular adult cat foods with pricing from Amazon, Chewy, Walmart, Petco
 
 Dependencies
 - Python 3.8+ recommended
@@ -79,23 +124,32 @@ Dependencies
 
     pip install -r requirements.txt
 
-Data sources used
-- Images: Wikimedia Commons via the MediaWiki API (https://commons.wikimedia.org/w/api.php). Public and freely-licensed images; verify individual image licenses for reuse.
-- News: Google News RSS search (https://news.google.com/rss/search?q=...). RSS content and timestamps are provided by publishers.
+Notes and caveats
 
-Limitations & notes
-- Image results depend on Wikimedia search results and may vary by query or over time.
-- RSS timestamps may be missing or inconsistent across publishers; the script normalizes timestamps to UTC when available.
-- The tool does no caching or deduplication across runs. It performs synchronous network calls and downloads, which is simple but not optimized for speed.
-- No API keys are required for current sources. Using other providers (Unsplash, Bing, Flickr) may require API keys and different request code.
+**catnews:**
+- Image results depend on Wikimedia search and may vary over time.
+- RSS timestamps are provided by publishers and may be inconsistent.
+- No API keys required; simple local operation.
+
+**catfood:**
+- Prices are based on a curated database of popular cat foods and are approximate/indicative.
+- For real-time pricing, integrate with retailer APIs (Amazon Product Ads, Chewy API, etc.).
+- Always verify current prices and availability on retailer websites.
+- Consult your veterinarian before switching your cat's diet.
 
 Possible next steps / enhancements
-- Package as an installable Python package (setup.cfg/pyproject.toml) with a console_scripts entry named "catnews" so users can run it globally.
-- Add alternate image providers (Unsplash, Bing) for higher-quality photos (requires API keys).
-- Add language/location filters for news queries and better date handling.
-- Add caching, retries, parallel downloads, and simple logging for robustness.
 
-If you'd like, I can implement any of the above next (packaging, alternate sources, or robustness improvements).
+- **catnews**: 
+  - Add alternate image providers (Unsplash, Bing)
+  - Package as installable pip package with global console entry
+
+- **catfood**:
+  - Integrate live price scraping from major retailers
+  - Add vet/nutritional recommendations
+  - Support for kittens, senior cats, or diet-specific foods
+  - Price alerts and tracking
+
+If you'd like, I can implement any of the above next.
 
 License
-Provided as-is for learning and prototyping.
+Provided as-is for learning and prototyping. Use responsibly and always consult your vet for pet health decisions.
