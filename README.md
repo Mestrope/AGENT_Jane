@@ -1,6 +1,6 @@
 Cat News & Cat Food Finder — Jane's Collection
 
-Meet Jane — the cat-loving agent 🐱. She loves cats and helps you discover random cute cat images,
+Meet Jane — the cat-loving agent . She loves cats and helps you discover random cute cat images,
 recent cat-related news from around the world, AND find the cheapest best cat food for your adult feline.
 
 This repository provides a collection of Jane's cat-loving CLI tools:
