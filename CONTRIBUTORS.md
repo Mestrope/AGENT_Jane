@@ -7,10 +7,7 @@ This project is maintained and contributed to by:
 
 ## Contributing
 
-We welcome contributions! If you'd like to contribute, feel free to:
-- Open a pull request with your changes
-- Report issues or suggest improvements
-- Improve documentation
+Only WaqassKhn and Mestrope will be contributing to this repo
 
 All pull requests from WaqassKhn are automatically approved and merged.
 
