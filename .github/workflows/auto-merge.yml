@@ -13,17 +13,32 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: Enable auto-merge for WaqassKhn PR
+      - name: Enable auto-merge using GraphQL
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.pulls.enableAutoMerge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-              merge_method: 'squash'
+            const query = `
+              mutation EnableAutoMerge($pullRequestId: ID!) {
+                enablePullRequestAutoMerge(input: {
+                  pullRequestId: $pullRequestId
+                  mergeMethod: SQUASH
+                }) {
+                  pullRequest {
+                    number
+                    autoMergeRequest {
+                      enabledAt
+                    }
+                  }
+                }
+              }
+            `;
+            
+            const result = await github.graphql(query, {
+              pullRequestId: context.payload.pull_request.node_id
             });
+            
+            console.log('Auto-merge enabled:', result);
 
       - name: Log auto-merge enabled
         run: echo "✅ PR #${{ github.event.pull_request.number }} from WaqassKhn auto-merge enabled (squash method)"
