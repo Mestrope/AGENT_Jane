@@ -2,8 +2,8 @@
 
 This project is maintained and contributed to by:
 
-- **Mestrope** (waqasskhan14@gmail.com) — Project lead, Jane agent creator
-- **WaqassKhn** (mdwaqasskhan@gmail.com) — Co-author, contributor with auto-merge privileges
+- **Mestrope** (wa***14@gmail.com) — Project lead, Jane agent creator
+- **WaqassKhn** (md***@gmail.com) — Co-author, contributor with auto-merge privileges
 
 ## Contributing
 
