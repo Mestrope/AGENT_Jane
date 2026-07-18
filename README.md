@@ -1,13 +1,23 @@
 Cat News & Cat Food Finder — Jane's Collection
 
+<<<<<<< HEAD
 Meet Jane — the cat-loving agent. She loves cats and helps you discover random cute cat images,
 recent cat-related news from around the world, find the cheapest best cat food for your adult feline,
 AND find the top-rated cat toys to keep your furry friend entertained!
+=======
+Meet Jane — the cat-loving agent . She loves cats and helps you discover random cute cat images,
+recent cat-related news from around the world, AND find the cheapest best cat food for your adult feline.
+>>>>>>> 1d1dfe7404989588786877559ad3381b1ed1d1b0
+
+### FOR THE LOVE OF CATS
 
 This repository provides a collection of Jane's cat-loving CLI tools:
 - **catnews**: Fetches random "cute cat" images paired with recent cat-related news
 - **catfood**: Finds the cheapest top cat foods for adult cats with ratings and price comparisons
+<<<<<<< HEAD
 - **cattoys**: Gets top-rated cat toys with descriptions, prices, and where to buy them
+=======
+>>>>>>> 1d1dfe7404989588786877559ad3381b1ed1d1b0
 - **jane**: Always happy to help you find the best kitty content and deals.
 
 Quick start
@@ -203,6 +213,7 @@ Possible next steps / enhancements
   - Support for kittens, senior cats, or diet-specific foods
   - Price alerts and tracking
 
+<<<<<<< HEAD
 - **cattoys**:
   - Integrate live toy ratings from major retailers
   - Add toy safety ratings and age recommendations
@@ -210,6 +221,9 @@ Possible next steps / enhancements
   - Add personalized recommendations based on cat type/age
 
 If you'd like, I can implement any of the above next.
+=======
+
+>>>>>>> 1d1dfe7404989588786877559ad3381b1ed1d1b0
 
 License
 Provided as-is for learning and prototyping. Use responsibly and always consult your vet for pet health decisions.
