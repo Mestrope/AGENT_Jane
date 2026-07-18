@@ -1,11 +1,13 @@
 Cat News & Cat Food Finder — Jane's Collection
 
 Meet Jane — the cat-loving agent. She loves cats and helps you discover random cute cat images,
-recent cat-related news from around the world, AND find the cheapest best cat food for your adult feline.
+recent cat-related news from around the world, find the cheapest best cat food for your adult feline,
+AND find the top-rated cat toys to keep your furry friend entertained!
 
 This repository provides a collection of Jane's cat-loving CLI tools:
 - **catnews**: Fetches random "cute cat" images paired with recent cat-related news
 - **catfood**: Finds the cheapest top cat foods for adult cats with ratings and price comparisons
+- **cattoys**: Gets top-rated cat toys with descriptions, prices, and where to buy them
 - **jane**: Always happy to help you find the best kitty content and deals.
 
 Quick start
@@ -36,10 +38,20 @@ Quick start
        python cat_food.py
        python cat_food.py --count 5 --brand "Purina"
        python cat_food.py --max-price 20 --min-rating 4.0
-   
+    
    - On Windows:
        .\catfood.bat
        .\catfood.bat --count 5 --brand "Royal Canin"
+
+   **cattoys** (find top-rated cat toys):
+   - Using Python directly:
+       python cat_toys.py
+       python cat_toys.py --category interactive --count 5
+       python cat_toys.py --max-price 20 --min-rating 4.5
+    
+   - On Windows:
+       .\cattoys.bat
+       .\cattoys.bat --category interactive --max-price 25
 
 Tools overview
 
@@ -70,6 +82,21 @@ Tools overview
   - --sort FIELD      Sort by 'price', 'rating', or 'name' (default: price)
   - --json            Output results as JSON
 
+**cattoys** — Get top-rated cat toys
+
+- Shows the top-rated cat toys available online with full details
+- Includes toy description, benefits, prices, ratings, and shopping links
+- Perfect for finding entertainment and enrichment options for your cat
+- Filters available for category, max price, and minimum rating
+
+- Common flags:
+  - --count N         Number of top toys to show (default: 3)
+  - --category CAT    Filter by category (e.g., 'interactive', 'plush', 'ball', 'tunnel')
+  - --max-price PRICE Filter by maximum price (e.g., 25.00)
+  - --min-rating RATE Filter by minimum rating (0-5, default: 0)
+  - --sort FIELD      Sort by 'rating', 'price', or 'name' (default: rating)
+  - --json            Output results as JSON
+
 Examples
 
 **catnews examples:**
@@ -92,11 +119,26 @@ Examples
 - Get 5 cheapest options as JSON:
     python cat_food.py --count 5 --json
 
+**cattoys examples:**
+- Show the top 3 highest-rated cat toys (default):
+    python cat_toys.py
+
+- Find interactive toys under $15:
+    python cat_toys.py --category interactive --max-price 15
+
+- Get top plush toys with 4.5+ rating:
+    python cat_toys.py --category plush --min-rating 4.5
+
+- Get 5 top-rated toys as JSON:
+    python cat_toys.py --count 5 --json
+
 Project components (what's included)
 - cat_news.py       — Primary catnews CLI agent. Implements subcommands: cute, news, both.
 - cat_food.py       — catfood CLI agent. Finds and compares cat food prices.
+- cat_toys.py       — cattoys CLI agent. Gets top-rated cat toys with details and links.
 - catnews.bat       — Windows launcher for catnews (run from repo root).
 - catfood.bat       — Windows launcher for catfood (run from repo root).
+- cattoys.bat       — Windows launcher for cattoys (run from repo root).
 - cat_agent.py      — Earlier/simpler catnews script (kept for reference).
 - requirements.txt  — Python dependencies (requests, feedparser).
 - README.md         — This file with usage and details.
@@ -114,10 +156,15 @@ Key functions and data sources
 - calculate_price_per_oz()  — Calculates cost efficiency
 - print_results()           — Displays cat food options in formatted table
 
+**cattoys (cat_toys.py):**
+- get_top_cat_toys()        — Filters cat toys by category, price, rating (sorted by rating)
+- print_results()           — Displays cat toys with descriptions and benefits
+
 Data sources used:
 - catnews images: Wikimedia Commons via MediaWiki API (public/freely-licensed)
 - catnews news: Google News RSS search for "cats" and "kittens"
 - catfood: Curated database of popular adult cat foods with pricing from Amazon, Chewy, Walmart, Petco
+- cattoys: Curated database of popular cat toys with ratings, prices, and retailer links
 
 Dependencies
 - Python 3.8+ recommended
@@ -138,6 +185,12 @@ Notes and caveats
 - Always verify current prices and availability on retailer websites.
 - Consult your veterinarian before switching your cat's diet.
 
+**cattoys:**
+- Toy ratings and prices are based on a curated database and are approximate/indicative.
+- For real-time pricing and ratings, integrate with retailer APIs.
+- Always verify current prices, availability, and safety reviews on retailer websites.
+- Check toy reviews and ensure toys are appropriate for your cat's age and play style.
+
 Possible next steps / enhancements
 
 - **catnews**: 
@@ -149,6 +202,12 @@ Possible next steps / enhancements
   - Add vet/nutritional recommendations
   - Support for kittens, senior cats, or diet-specific foods
   - Price alerts and tracking
+
+- **cattoys**:
+  - Integrate live toy ratings from major retailers
+  - Add toy safety ratings and age recommendations
+  - Implement "Deal of the Day" for discounted toys
+  - Add personalized recommendations based on cat type/age
 
 If you'd like, I can implement any of the above next.
 
