@@ -9,8 +9,6 @@ This project is maintained and contributed to by:
 
 Only WaqassKhn and Mestrope will be contributing to this repo
 
-All pull requests from WaqassKhn are automatically approved and merged.
-
 ---
 
 *Built with 🐱 by Jane, the cat-loving agent.*
